@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HydroSense AI - Irrigation</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #08111f;
+            color: white;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        h1 {
+            color: #00d9ff;
+        }
+
+        .subtitle {
+            color: #aab7c4;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #101d2d;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #1d354d;
+        }
+
+        .card h2 {
+            color: #00d9ff;
+        }
+
+        .value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #00ff99;
+            font-weight: bold;
+        }
+
+        .controls {
+            margin-top: 30px;
+            background: #101d2d;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        button {
+            padding: 14px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .on {
+            background: #00c878;
+            color: white;
+        }
+
+        .off {
+            background: #e53935;
+            color: white;
+        }
+
+        .auto {
+            background: #008cff;
+            color: white;
+        }
+
+        #recommendation {
+            color: #00d9ff;
+            font-size: 18px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            background: #16283d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💧 Irrigation Control</h1>
+
+    <p class="subtitle">
+        HydroSense AI Smart Irrigation System
+    </p>
+
+
+    <!-- SENSOR INFORMATION -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>🌱 Soil Moisture</h2>
+            <div class="value" id="moisture">0%</div>
+        </div>
+
+
+        <div class="card">
+            <h2>💧 Pump Status</h2>
+            <div class="value status" id="pumpStatus">
+                OFF
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h2>⚙️ Irrigation Mode</h2>
+            <div class="value" id="mode">
+                AUTO
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- PUMP CONTROL -->
+
+    <div class="controls">
+
+        <h2>🚰 Pump Control</h2>
+
+        <button class="on" onclick="pumpOn()">
+            TURN ON PUMP
+        </button>
+
+        <button class="off" onclick="pumpOff()">
+            TURN OFF PUMP
+        </button>
+
+        <button class="auto" onclick="autoMode()">
+            AUTO MODE
+        </button>
+
+    </div>
+
+
+    <!-- AI RECOMMENDATION -->
+
+    <div class="controls">
+
+        <h2>🤖 AI Irrigation Recommendation</h2>
+
+        <p id="recommendation">
+            Sensor data unavailable.
+            Please connect the sensors.
+        </p>
+
+    </div>
+
+
+    <!-- IRRIGATION INFORMATION -->
+
+    <div class="controls">
+
+        <h2>📊 Irrigation Information</h2>
+
+        <p>
+            Irrigation Duration:
+            <strong id="duration">0 minutes</strong>
+        </p>
+
+        <p>
+            Water Used:
+            <strong id="waterUsed">0 L</strong>
+        </p>
+
+        <p>
+            System Status:
+            <strong class="status">READY</strong>
+        </p>
+
+    </div>
+
+
+    <!-- BACK TO DASHBOARD -->
+
+    <a class="back" href="dashboard.html">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+
+<script>
+
+let pumpStatus = false;
+let automaticMode = true;
+
+
+// PUMP ON
+
+function pumpOn() {
+
+    pumpStatus = true;
+
+    document.getElementById("pumpStatus").innerText = "ON";
+
+    document.getElementById("recommendation").innerText =
+        "Pump is ON. Irrigation is currently running.";
+}
+
+
+// PUMP OFF
+
+function pumpOff() {
+
+    pumpStatus = false;
+
+    document.getElementById("pumpStatus").innerText = "OFF";
+
+    document.getElementById("recommendation").innerText =
+        "Pump is OFF. Irrigation stopped.";
+}
+
+
+// AUTO MODE
+
+function autoMode() {
+
+    automaticMode = true;
+
+    document.getElementById("mode").innerText = "AUTO";
+
+    document.getElementById("recommendation").innerText =
+        "Automatic irrigation mode activated.";
+}
+
+</script>
+
+</body>
+</html>

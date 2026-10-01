@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>HydroSense AI - AI Insights</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #08111f;
+            color: white;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        h1 {
+            color: #00d9ff;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #aab7c4;
+            margin-bottom: 30px;
+        }
+
+        .top-status {
+            background: #101d2d;
+            border: 1px solid #1d354d;
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .connected {
+            color: #00ff99;
+            font-weight: bold;
+        }
+
+        .disconnected {
+            color: #ff5252;
+            font-weight: bold;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #101d2d;
+            border: 1px solid #1d354d;
+            border-radius: 15px;
+            padding: 22px;
+        }
+
+        .card h2 {
+            color: #00d9ff;
+            font-size: 18px;
+        }
+
+        .value {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .panel {
+            background: #101d2d;
+            border: 1px solid #1d354d;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .panel h2 {
+            color: #00d9ff;
+        }
+
+        .recommendation {
+            background: #0b2634;
+            border-left: 5px solid #00d9ff;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .risk {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff99;
+        }
+
+        .progress-box {
+            margin-top: 20px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 15px;
+            background: #26384b;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #00d9ff;
+            transition: 0.5s;
+        }
+
+        .button-area {
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #008cff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00b7ff;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            background: #16283d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 AI Insights</h1>
+
+    <p class="subtitle">
+        HydroSense AI Intelligent Irrigation Analysis
+    </p>
+
+
+    <!-- AI STATUS -->
+
+    <div class="top-status">
+
+        AI Engine Status:
+        <span id="aiStatus" class="disconnected">
+            Waiting for Sensor Data
+        </span>
+
+    </div>
+
+
+    <!-- SENSOR VALUES -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h2>🌱 Soil Moisture</h2>
+
+            <div class="value">
+                <span id="moisture">0</span>%
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>🌡️ Temperature</h2>
+
+            <div class="value">
+                <span id="temperature">0</span>°C
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>💨 Humidity</h2>
+
+            <div class="value">
+                <span id="humidity">0</span>%
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>💧 Water Level</h2>
+
+            <div class="value">
+                <span id="waterLevel">0</span>%
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN AI PANELS -->
+
+    <div class="main-grid">
+
+
+        <!-- AI RECOMMENDATION -->
+
+        <div class="panel">
+
+            <h2>🧠 AI Recommendation</h2>
+
+            <div class="recommendation" id="recommendation">
+
+                Sensor data unavailable.
+                Connect the sensors to generate an AI irrigation recommendation.
+
+            </div>
+
+        </div>
+
+
+        <!-- RISK -->
+
+        <div class="panel">
+
+            <h2>⚠️ Irrigation Risk</h2>
+
+            <p id="risk" class="risk">
+                UNKNOWN
+            </p>
+
+            <p id="riskText">
+                Waiting for sensor data.
+            </p>
+
+        </div>
+
+
+        <!-- SOIL ANALYSIS -->
+
+        <div class="panel">
+
+            <h2>🌱 Soil Condition</h2>
+
+            <p id="soilCondition">
+                No sensor data available.
+            </p>
+
+            <div class="progress-box">
+
+                <p>
+                    Moisture Level
+                </p>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="moistureBar">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WATER SAVING -->
+
+        <div class="panel">
+
+            <h2>💧 Water Saving Suggestion</h2>
+
+            <p id="waterSaving">
+
+                AI will provide a water-saving recommendation
+                after receiving sensor data.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ANALYSE BUTTON -->
+
+    <div class="button-area">
+
+        <button onclick="analyzeData()">
+            🧠 Analyze Sensor Data
+        </button>
+
+    </div>
+
+
+    <br>
+
+
+    <a class="back" href="dashboard.html">
+        ← Back to Dashboard
+    </a>
+
+
+</div>
+
+
+<script>
+
+
+// --------------------------------------------------
+// SENSOR CONNECTION
+// --------------------------------------------------
+
+let sensorConnected = false;
+
+
+// --------------------------------------------------
+// SENSOR DATA
+// --------------------------------------------------
+
+let sensorData = {
+
+    moisture: 0,
+
+    temperature: 0,
+
+    humidity: 0,
+
+    waterLevel: 0
+
+};
+
+
+// --------------------------------------------------
+// DISPLAY SENSOR DATA
+// --------------------------------------------------
+
+function updateSensorData() {
+
+    document.getElementById("moisture").innerText =
+        sensorData.moisture;
+
+    document.getElementById("temperature").innerText =
+        sensorData.temperature;
+
+    document.getElementById("humidity").innerText =
+        sensorData.humidity;
+
+    document.getElementById("waterLevel").innerText =
+        sensorData.waterLevel;
+
+
+    document.getElementById("moistureBar").style.width =
+        sensorData.moisture + "%";
+
+
+    if (!sensorConnected) {
+
+        document.getElementById("aiStatus").innerText =
+            "Waiting for Sensor Data";
+
+        document.getElementById("aiStatus").className =
+            "disconnected";
+
+    }
+
+}
+
+
+// --------------------------------------------------
+// AI ANALYSIS
+// --------------------------------------------------
+
+function analyzeData() {
+
+
+    if (!sensorConnected) {
+
+        document.getElementById("recommendation").innerText =
+            "Sensor data unavailable. Please connect the sensors.";
+
+        document.getElementById("risk").innerText =
+            "UNKNOWN";
+
+        document.getElementById("riskText").innerText =
+            "AI cannot analyse irrigation requirements without sensor data.";
+
+        document.getElementById("soilCondition").innerText =
+            "Sensor not connected.";
+
+        document.getElementById("waterSaving").innerText =
+            "Connect the sensors to generate a water-saving recommendation.";
+
+        return;
+    }
+
+
+    let moisture = sensorData.moisture;
+
+
+    document.getElementById("aiStatus").innerText =
+        "AI Analysis Active";
+
+    document.getElementById("aiStatus").className =
+        "connected";
+
+
+    // VERY DRY SOIL
+
+    if (moisture < 30) {
+
+        document.getElementById("recommendation").innerText =
+            "Soil moisture is very low. AI recommends starting irrigation.";
+
+        document.getElementById("risk").innerText =
+            "HIGH";
+
+        document.getElementById("riskText").innerText =
+            "The crop may require water soon.";
+
+        document.getElementById("soilCondition").innerText =
+            "Very Dry";
+
+        document.getElementById("waterSaving").innerText =
+            "Use controlled irrigation and stop the pump when sufficient moisture is reached.";
+
+    }
+
+
+    // MODERATE
+
+    else if (moisture < 50) {
+
+        document.getElementById("recommendation").innerText =
+            "Soil moisture is moderate. AI recommends monitoring the field.";
+
+        document.getElementById("risk").innerText =
+            "MEDIUM";
+
+        document.getElementById("riskText").innerText =
+            "Irrigation may be required if moisture decreases.";
+
+        document.getElementById("soilCondition").innerText =
+            "Moderately Moist";
+
+        document.getElementById("waterSaving").innerText =
+            "Avoid unnecessary irrigation and monitor soil moisture.";
+
+    }
+
+
+    // GOOD
+
+    else {
+
+        document.getElementById("recommendation").innerText =
+            "Soil moisture is sufficient. Irrigation is currently not required.";
+
+        document.getElementById("risk").innerText =
+            "LOW";
+
+        document.getElementById("riskText").innerText =
+            "Current moisture conditions are suitable.";
+
+        document.getElementById("soilCondition").innerText =
+            "Moist";
+
+        document.getElementById("waterSaving").innerText =
+            "No immediate irrigation required. This can help reduce water consumption.";
+
+    }
+
+}
+
+
+// --------------------------------------------------
+// INITIAL LOAD
+// --------------------------------------------------
+
+updateSensorData();
+
+</script>
+
+
+</body>
+</html>

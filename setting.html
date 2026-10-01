@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>HydroSense AI - Settings</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #08111f;
+            color: white;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #00d9ff;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #aab7c4;
+            margin-bottom: 30px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .setting-card {
+            background: #101d2d;
+            border: 1px solid #1d354d;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .setting-card h2 {
+            color: #00d9ff;
+            margin-top: 0;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #26384b;
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        label {
+            color: #d8e2ec;
+        }
+
+        input[type="number"],
+        select {
+            background: #17283a;
+            color: white;
+            border: 1px solid #36506a;
+            border-radius: 7px;
+            padding: 10px;
+            width: 120px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .save-button {
+            margin-top: 25px;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            background: #008cff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background: #00b7ff;
+        }
+
+        .message {
+            margin-top: 20px;
+            color: #00ff99;
+            font-weight: bold;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            background: #16283d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .system-status {
+            background: #101d2d;
+            border: 1px solid #1d354d;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .online {
+            color: #00ff99;
+            font-weight: bold;
+        }
+
+        @media (max-width: 800px) {
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .setting-item {
+                gap: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>⚙️ System Settings</h1>
+
+    <p class="subtitle">
+        Configure HydroSense AI Smart Irrigation System
+    </p>
+
+
+    <!-- SYSTEM STATUS -->
+
+    <div class="system-status">
+
+        <h2>System Status</h2>
+
+        <p>
+            ESP32:
+            <span class="online">● Ready</span>
+        </p>
+
+        <p>
+            AI Engine:
+            <span class="online">● Enabled</span>
+        </p>
+
+        <p>
+            Irrigation System:
+            <span class="online">● Ready</span>
+        </p>
+
+    </div>
+
+
+    <div class="settings-grid">
+
+
+        <!-- IRRIGATION SETTINGS -->
+
+        <div class="setting-card">
+
+            <h2>💧 Irrigation Settings</h2>
+
+            <div class="setting-item">
+
+                <label>
+                    Minimum Soil Moisture (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="minMoisture"
+                    value="30"
+                    min="0"
+                    max="100"
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Target Soil Moisture (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="targetMoisture"
+                    value="50"
+                    min="0"
+                    max="100"
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Maximum Pump Time (minutes)
+                </label>
+
+                <input
+                    type="number"
+                    id="pumpTime"
+                    value="15"
+                    min="1"
+                    max="120"
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Irrigation Mode
+                </label>
+
+                <select id="irrigationMode">
+
+                    <option value="auto">
+                        Automatic
+                    </option>
+
+                    <option value="manual">
+                        Manual
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI SETTINGS -->
+
+        <div class="setting-card">
+
+            <h2>🤖 AI Settings</h2>
+
+            <div class="setting-item">
+
+                <label>
+                    AI Irrigation Recommendation
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="aiRecommendation"
+                    checked
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Predictive Irrigation
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="predictive"
+                    checked
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Water Saving Mode
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="waterSaving"
+                    checked
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- SENSOR SETTINGS -->
+
+        <div class="setting-card">
+
+            <h2>📡 Sensor Settings</h2>
+
+            <div class="setting-item">
+
+                <label>
+                    Soil Moisture Sensor
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="soilSensor"
+                    checked
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Temperature Sensor
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="temperatureSensor"
+                    checked
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Humidity Sensor
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="humiditySensor"
+                    checked
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Water Level Sensor
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="waterSensor"
+                    checked
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- NOTIFICATION SETTINGS -->
+
+        <div class="setting-card">
+
+            <h2>🔔 Notifications</h2>
+
+            <div class="setting-item">
+
+                <label>
+                    Low Moisture Alert
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="moistureAlert"
+                    checked
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Low Water Level Alert
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="waterAlert"
+                    checked
+                >
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <label>
+                    Pump Status Alert
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="pumpAlert"
+                    checked
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SAVE -->
+
+    <button class="save-button" onclick="saveSettings()">
+        💾 Save Settings
+    </button>
+
+
+    <div id="message" class="message"></div>
+
+
+    <br>
+
+
+    <a class="back" href="dashboard.html">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+
+<script>
+
+function saveSettings() {
+
+    let minMoisture =
+        document.getElementById("minMoisture").value;
+
+    let targetMoisture =
+        document.getElementById("targetMoisture").value;
+
+    let pumpTime =
+        document.getElementById("pumpTime").value;
+
+    let mode =
+        document.getElementById("irrigationMode").value;
+
+
+    document.getElementById("message").innerText =
+        "✓ Settings saved successfully! " +
+        "Minimum moisture: " + minMoisture + "%, " +
+        "Target: " + targetMoisture + "%, " +
+        "Pump limit: " + pumpTime + " minutes, " +
+        "Mode: " + mode.toUpperCase();
+
+}
+
+</script>
+
+
+</body>
+</html>

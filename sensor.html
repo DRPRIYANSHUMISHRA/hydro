@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>HydroSense AI - Sensors</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #08111f;
+            color: white;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        h1 {
+            color: #00d9ff;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #aab7c4;
+            margin-bottom: 30px;
+        }
+
+        .system-status {
+            background: #101d2d;
+            border: 1px solid #1d354d;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .offline {
+            color: #ff5252;
+            font-weight: bold;
+        }
+
+        .online {
+            color: #00ff99;
+            font-weight: bold;
+        }
+
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .sensor-card {
+            background: #101d2d;
+            border: 1px solid #1d354d;
+            border-radius: 15px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .sensor-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d9ff;
+        }
+
+        .sensor-icon {
+            font-size: 35px;
+        }
+
+        .sensor-card h2 {
+            color: #00d9ff;
+            font-size: 19px;
+        }
+
+        .value {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .sensor-status {
+            color: #ff5252;
+            font-size: 14px;
+        }
+
+        .section {
+            background: #101d2d;
+            border: 1px solid #1d354d;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .section h2 {
+            color: #00d9ff;
+        }
+
+        .info {
+            line-height: 1.7;
+            color: #c7d3df;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            background: #16283d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .refresh {
+            margin-top: 20px;
+            padding: 13px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #008cff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .refresh:hover {
+            background: #00b7ff;
+        }
+
+        @media (max-width: 1000px) {
+
+            .sensor-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .sensor-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>📡 Sensor Monitoring</h1>
+
+    <p class="subtitle">
+        HydroSense AI Smart Irrigation Sensor System
+    </p>
+
+
+    <!-- SYSTEM CONNECTION STATUS -->
+
+    <div class="system-status">
+
+        <h2>ESP32 Connection</h2>
+
+        <p>
+            Status:
+            <span id="espStatus" class="offline">
+                ● DISCONNECTED
+            </span>
+        </p>
+
+        <p>
+            Sensor System:
+            <span id="sensorSystem" class="offline">
+                OFFLINE
+            </span>
+        </p>
+
+    </div>
+
+
+    <!-- SENSOR CARDS -->
+
+    <div class="sensor-grid">
+
+
+        <!-- SOIL MOISTURE -->
+
+        <div class="sensor-card">
+
+            <div class="sensor-icon">🌱</div>
+
+            <h2>Soil Moisture</h2>
+
+            <div class="value">
+                <span id="moisture">0</span>%
+            </div>
+
+            <div id="moistureStatus" class="sensor-status">
+                ● Sensor Disconnected
+            </div>
+
+        </div>
+
+
+        <!-- TEMPERATURE -->
+
+        <div class="sensor-card">
+
+            <div class="sensor-icon">🌡️</div>
+
+            <h2>Temperature</h2>
+
+            <div class="value">
+                <span id="temperature">0</span>°C
+            </div>
+
+            <div id="temperatureStatus" class="sensor-status">
+                ● Sensor Disconnected
+            </div>
+
+        </div>
+
+
+        <!-- HUMIDITY -->
+
+        <div class="sensor-card">
+
+            <div class="sensor-icon">💨</div>
+
+            <h2>Air Humidity</h2>
+
+            <div class="value">
+                <span id="humidity">0</span>%
+            </div>
+
+            <div id="humidityStatus" class="sensor-status">
+                ● Sensor Disconnected
+            </div>
+
+        </div>
+
+
+        <!-- WATER LEVEL -->
+
+        <div class="sensor-card">
+
+            <div class="sensor-icon">💧</div>
+
+            <h2>Water Level</h2>
+
+            <div class="value">
+                <span id="waterLevel">0</span>%
+            </div>
+
+            <div id="waterLevelStatus" class="sensor-status">
+                ● Sensor Disconnected
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SENSOR INFORMATION -->
+
+    <div class="section">
+
+        <h2>🔧 Sensor Information</h2>
+
+        <p class="info">
+            HydroSense AI collects real-time environmental and soil
+            information through connected sensors. The sensor data is
+            processed by the ESP32 and can be used by the AI irrigation
+            engine to determine irrigation requirements.
+        </p>
+
+        <p class="info">
+            When the sensors are not connected, the system displays
+            <strong>0</strong> values.
+        </p>
+
+    </div>
+
+
+    <!-- SENSOR LIST -->
+
+    <div class="section">
+
+        <h2>📋 Connected Sensor Modules</h2>
+
+        <p class="info">
+            🌱 Soil Moisture Sensor
+        </p>
+
+        <p class="info">
+            🌡️ Temperature Sensor
+        </p>
+
+        <p class="info">
+            💨 Humidity Sensor
+        </p>
+
+        <p class="info">
+            💧 Water Level Sensor
+        </p>
+
+    </div>
+
+
+    <button class="refresh" onclick="refreshSensors()">
+        🔄 Refresh Sensor Data
+    </button>
+
+
+    <br>
+
+
+    <a class="back" href="dashboard.html">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+
+<script>
+
+    // ---------------------------------------
+    // SENSOR CONNECTION
+    // ---------------------------------------
+
+    let sensorConnected = false;
+
+
+    // ---------------------------------------
+    // SENSOR DATA
+    // ---------------------------------------
+
+    let sensorData = {
+
+        moisture: 0,
+
+        temperature: 0,
+
+        humidity: 0,
+
+        waterLevel: 0
+
+    };
+
+
+    // ---------------------------------------
+    // UPDATE SENSOR DATA
+    // ---------------------------------------
+
+    function updateSensors() {
+
+        if (!sensorConnected) {
+
+            sensorData.moisture = 0;
+            sensorData.temperature = 0;
+            sensorData.humidity = 0;
+            sensorData.waterLevel = 0;
+
+            document.getElementById("espStatus").innerText =
+                "● DISCONNECTED";
+
+            document.getElementById("espStatus").className =
+                "offline";
+
+            document.getElementById("sensorSystem").innerText =
+                "OFFLINE";
+
+            document.getElementById("sensorSystem").className =
+                "offline";
+
+        }
+
+
+        document.getElementById("moisture").innerText =
+            sensorData.moisture;
+
+        document.getElementById("temperature").innerText =
+            sensorData.temperature;
+
+        document.getElementById("humidity").innerText =
+            sensorData.humidity;
+
+        document.getElementById("waterLevel").innerText =
+            sensorData.waterLevel;
+
+    }
+
+
+    // ---------------------------------------
+    // REFRESH BUTTON
+    // ---------------------------------------
+
+    function refreshSensors() {
+
+        updateSensors();
+
+        alert("Sensor data refreshed.");
+
+    }
+
+
+    // ---------------------------------------
+    // INITIAL LOAD
+    // ---------------------------------------
+
+    updateSensors();
+
+</script>
+
+</body>
+</html>
