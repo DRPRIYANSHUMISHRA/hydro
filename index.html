@@ -22,14 +22,65 @@ HTML>
                  <a href="sensor.html">SENSOR</a>
                  <a href="setting.html">SETTINGS</a>
                  </NAVIGATION>
-                 <script>
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js")
-        .then(() => console.log("HydroSense AI Service Worker Registered"))
-        .catch(error => console.log("Service Worker Error:", error));
-}
-</script>
-        </BODY>
-    </HEAD>
-</HTML>
+                <!DOCTYPE html>
+<html>
+
+<head>
+    <title>HYDRO_AI</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b7a75">
+</head>
+
+<body bgcolor="WHITE">
+
+    <h1>
+        HYDROSENSE AI (AI BASED SMART IRRIGATION SYSTEM AND FILTRATION)
+    </h1>
+
+    <img src="photo.png" align="left" width="500" height="500">
+
+    <h1>SMALL DESCRIPTION RELATED TO OUR PROJECT</h1>
+
+    <h2>
+        <font color="BLACK">
+            This project aims to develop an intelligent irrigation system
+            that utilizes artificial intelligence to optimize water usage
+            and improve crop yields. Additionally, it incorporates
+            advanced filtration technology to ensure the quality of
+            the irrigation water.
+        </font>
+    </h2>
+
+    <nav>
+
+        <a href="dashboard.html">DASHBOARD</a>
+
+        <a href="index.html">HOME</a>
+
+        <a href="irrigation.html">IRRIGATION</a>
+
+        <a href="ai-insight.html">AI INSIGHT</a>
+
+        <a href="sensor.html">SENSOR</a>
+
+        <a href="setting.html">SETTINGS</a>
+
+    </nav>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js")
+                .then(() => {
+                    console.log("HydroSense AI Service Worker Registered");
+                })
+                .catch(error => {
+                    console.log("Service Worker Error:", error);
+                });
+        }
+    </script>
+
+</body>
+
+</html>
 
