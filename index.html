@@ -23,6 +23,13 @@
                  <a href="sensor.html">SENSOR</a>
                  <a href="setting.html">SETTINGS</a>
                  </NAVIGATION>
+            <script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("HydroSense AI Service Worker Registered"))
+        .catch(error => console.log("Service Worker Error:", error));
+}
+</script>
         </BODY>
     </HEAD>
 </HTML>
