@@ -1,0 +1,16 @@
+{
+  "name": "HydroSense AI",
+  "short_name": "HydroSense",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b7a75",
+  "description": "AI-powered smart irrigation system",
+  "icons": [
+    {
+      "src": "photo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
