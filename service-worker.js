@@ -1,12 +1,12 @@
-const CACHE_NAME = "hydrosense-ai-v1";
+const CACHE_NAME = "hydrosense-ai-v2";
 
 const FILES_TO_CACHE = [
     "index.html",
     "dashboard.html",
     "irrigation.html",
-    "ai-insights.html",
-    "sensors.html",
-    "settings.html",
+    "ai-insight.html",
+    "sensor.html",
+    "setting.html",
     "photo.png"
 ];
 
