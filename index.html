@@ -1,64 +1,35 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-    <title>HYDRO_AI</title>
-
+HTML>
+    <HEAD
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0b7a75">
+<meta name="theme-color" content="#0b7a75">>
+        <TITLE>
+            HYDRO_AI
+        </TITLE>
+        <BODY bgcolor="WHITE">
+             <H1>HYDROSENESE AI (AI BASED SMART IRRIGATION SYSTEM AND FILTERATION )</H1>
+             <img src="photo.png" align="left" width="500" height="500">
 
-</head>
+             <h1> SMALL DESCRIPTION RELATED TO OUR PROJECT </h1>
+             <H2><FONT COLOR ="BLACK">This project aims to develop an intelligent irrigation system that utilizes artificial intelligence to
+                 optimize water usage and improve crop yields. Additionally, it incorporates advanced filtration technology to ensure the quality 
+                 of the irrigation water.</FONT></H2>
 
-<body bgcolor="WHITE">
-
-    <h1>
-        HYDROSENSE AI (AI BASED SMART IRRIGATION SYSTEM AND FILTRATION)
-    </h1>
-
-    <img src="photo.png" align="left" width="500" height="500">
-
-    <h1>
-        SMALL DESCRIPTION RELATED TO OUR PROJECT
-    </h1>
-
-    <h2>
-        <font color="BLACK">
-            This project aims to develop an intelligent irrigation system
-            that utilizes artificial intelligence to optimize water usage
-            and improve crop yields. Additionally, it incorporates
-            advanced filtration technology to ensure the quality of
-            the irrigation water.
-        </font>
-    </h2>
-
-    <nav>
-
-        <a href="dashboard.html">DASHBOARD</a>
+                 <NAVIGATION>
+                 <a href="dashboard.html">DASHBOARD</a>
                  <a href="index.html">HOME</a>
                  <a href="irrigation.html">IRRIGATION</a>
                  <a href ="ai-insight.html">AI INSIGTH</a>
                  <a href="sensor.html">SENSOR</a>
                  <a href="setting.html">SETTINGS</a>
-    </nav>
+                 </NAVIGATION>
+                 <script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("HydroSense AI Service Worker Registered"))
+        .catch(error => console.log("Service Worker Error:", error));
+}
+</script>
+        </BODY>
+    </HEAD>
+</HTML>
 
-
-    <script>
-
-        if ("serviceWorker" in navigator) {
-
-            navigator.serviceWorker.register("service-worker.js")
-                .then(() => {
-                    console.log("HydroSense AI Service Worker Registered");
-                })
-                .catch(error => {
-                    console.log("Service Worker Error:", error);
-                });
-
-        }
-
-    </script>
-
-</body>
-
-</html>
